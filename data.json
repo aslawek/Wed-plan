@@ -1,0 +1,37 @@
+{
+  "guests": [
+    {
+      "id": 1,
+      "name": "Wojciech",
+      "surname": "Kaspera",
+      "family": null,
+      "age": 30,
+      "side": "groom",
+      "accommodation": false,
+      "confirmed": false,
+      "companion": true
+    },
+    {
+      "id": 2,
+      "name": "Tomasz",
+      "surname": "Jakubek",
+      "family": null,
+      "age": 31,
+      "side": "groom",
+      "accommodation": false,
+      "confirmed": false,
+      "companion": true
+    },
+    {
+      "id": 3,
+      "name": "Janusz",
+      "surname": "Sławek",
+      "family": "Sławki",
+      "age": 35,
+      "side": "groom",
+      "accommodation": false,
+      "confirmed": false,
+      "companion": true
+    }
+  ]
+}

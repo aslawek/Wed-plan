@@ -1,4 +1,33 @@
-.hello{
-    color: red;
-    background: yellow;
+body{
+    font-size: 16px;
+}
+
+.app-body{
+    /*background-image: url("images/wedding.jpg");*/
+    background: lightcyan;
+    height: 100vh;
+}
+
+.mainpage-box{
+    display: flex;
+    justify-items: center;
+}
+
+.mainpage-btn{
+    text-decoration: none;
+    background: grey;
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.guest-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.guest-name{
+    font-size: 1.5rem;
+    padding: 0.5rem;
 }
