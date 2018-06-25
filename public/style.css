@@ -4,30 +4,132 @@ body{
 
 .app-body{
     /*background-image: url("images/wedding.jpg");*/
+    display: flex;
+    flex-direction: column;
     background: lightcyan;
     height: 100vh;
 }
 
+/* HEADER */
+.header-box{
+    display: flex;
+    justify-content: space-between;
+    min-height: 4rem;
+    background: black;
+    align-items: center;
+}
+
+.header-title{
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    margin-left: 1rem;
+}
+
+.header-btn-back{
+    text-decoration: none;
+    color: black;
+    font-size: 1.25rem;
+    background: darkgrey;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+}
+
+.header-input{
+    margin-right: 1rem;
+    padding: 0.5rem;
+    min-width: 15rem;
+    font-size: 1rem;
+    border: 0px solid;
+    outline: none;
+    border-radius: 0.5rem;
+}
+
+/* MAINPAGE */
+
 .mainpage-box{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-items: center;
 }
 
-.mainpage-btn{
+.mainpage-elem{
     text-decoration: none;
     background: grey;
     color: white;
     font-size: 2rem;
     padding: 1rem;
     border-radius: 1rem;
+    margin: 1rem;
+    width: calc(50% - 4rem);
 }
 
-.guest-box{
+/* GUESTS */
+
+.guests-content{
     display: flex;
     flex-direction: row;
 }
 
+.guests-box{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    -webkit-padding-start: 0;
+    padding: 1rem;
+    margin: 0;
+}
+
+.guest-item{
+    display: flex;
+    flex-direction: row;
+}
+.guest-item:first-child{
+    background: lightgreen;
+    font-weight: bolder;
+    border-radius: 0.5rem;
+}
+
 .guest-name{
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 0.5rem;
+    width: 10rem;
+}
+
+/* GUEST-FORM */
+
+.guest-form{
+    width: 25%;
+    margin: 1rem;
+    background: deepskyblue;
+    border-radius: 0.5rem;
+}
+
+.guest-form-header{
+    margin: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.guest-form-input{
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: calc(100% - 2rem);
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+}
+
+.guest-form-btn{
+    color: black;
+    font-size: 1rem;
+    background: lightblue;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
 }

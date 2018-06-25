@@ -8,12 +8,10 @@ import Guests from './Guests';
 
 const App = () => (
     <BrowserRouter>
-        <div className="app-body">
-            <Switch>
-                <Route exact path="/" component={Mainpage}/>
-                <Route exact path="/guests" component={(props) => <Guests guests={data.guests}/> }/>
-            </Switch>
-        </div>
+        <Switch>
+            <Route exact path="/" component={() => <Mainpage props={data}/>}/>
+            <Route exact path="/guests" component={() => <Guests guests={data.guests}/> }/>
+        </Switch>
     </BrowserRouter>
 );
 
