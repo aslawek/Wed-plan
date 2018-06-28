@@ -115,13 +115,23 @@ body{
     text-align: center;
 }
 
-.guest-form-input{
+.guest-form-input,
+.guest-form-input__small{
     margin: 0.5rem;
     padding: 0.5rem;
     width: calc(100% - 2rem);
     border-radius: 0.5rem;
     border: none;
     outline: none;
+}
+.guest-form-input__small{
+    width: calc(50% - 2rem);
+}
+
+.guest-form-select{
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: calc(50% - 1rem);
 }
 
 .guest-form-btn{

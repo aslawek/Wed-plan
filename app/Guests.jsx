@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Header from './Header';
 import Guest from './Guest';
 import GuestsForm from './GuestsForm';
 
 class Guests extends React.Component {
+    static propTypes = {
+        addGuest: PropTypes.func
+    };
 
     render(){
         return (
@@ -18,7 +22,7 @@ class Guests extends React.Component {
                         </li>
                         {this.props.guests.map(guest => <Guest props={guest} key={guest.id}/>)}
                     </ul>
-                    <GuestsForm/>
+                    <GuestsForm addGuest={this.props.addGuest}/>
                 </div>
             </div>
         )
