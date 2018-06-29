@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Guest = (props) => (
     <li className="guest-item">
@@ -6,5 +7,9 @@ const Guest = (props) => (
         <div className="guest-name">{props.props.surname}</div>
     </li>
 );
+
+Guest.propTypes = {
+    props: PropTypes.object
+};
 
 export default Guest;
