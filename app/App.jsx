@@ -1,25 +1,34 @@
+import "babel-polyfill";
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import firebase from 'firebase';
 
-import { firebaseApp } from "../database";
+import database, { firebaseApp } from "../database";
 import data from './../data.json';
-import database from '../database';
 import Mainpage from './Mainpage';
 import Guests from './Guests';
 
 class App extends React.Component {
+    static propTypes = {
+        guests: PropTypes.object
+    };
+
     state = {
-        userid: {},
-        guests: {}
+        // chabge uuk for null or {}
+        userid: "uuk",
+        guests: {
+            id: 1,
+            name: "Rafał"
+        }
     };
 
     componentDidMount(){
-        this.ref = database.syncState('/database/guests', {
-            context: this,
-            state: 'guests'
-        });
+        // this.ref = database.syncState('/database/guests', {
+        //     context: this,
+        //     state: 'guests'
+        // });
     }
 
     addGuest = guest => {
@@ -28,12 +37,18 @@ class App extends React.Component {
         this.setState({guests});
     };
 
-    authHandler = async (authData) => {
-        console.log(authData);
+    authHandler = async authData => {
+        // currentUser cos nie smiga
+        const currentUser = await database.fetch(this.state.userid, {context: this});
+        this.setState({userid: authData.user.uid});
+        this.ref = await database.syncState(`/database${authData.user.uid}/guests`, {
+            context: this,
+            state: 'guests'
+        });
     };
 
     authenticate = provider => {
-        const authProvider = new firebase.auth[`${Provider}AuthProvider`]();
+        const authProvider = new firebase.auth[`${provider}AuthProvider`]();
         firebaseApp
             .auth()
             .signInWithPopup(authProvider)
@@ -47,7 +62,7 @@ class App extends React.Component {
                     <Route exact path="/" component={() => <Mainpage props={data} authenticate={this.authenticate}/>}/>
                     <Route exact path="/guests" component={() =>
                         <Guests
-                        guests={data.guests}
+                        guests={this.state.guests}
                         addGuest={this.addGuest}
                         />
                     }/>

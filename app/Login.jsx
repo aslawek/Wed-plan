@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Login = (props) => (
     <div className="login-box">
-        <p className="login-p">Sign in to manage your wedding!</p>
-        <button className="facebook" onClick={props.authenticate('Facebook')}>Sign in with facebook</button>
+        <button className="facebook" onClick={() => props.authenticate("Facebook")}>Sign in with facebook</button>
     </div>
 );
+
+Login.propTypes = {
+    authenticate: PropTypes.func.isRequired
+};
 
 export default Login

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Header from './Header';
@@ -16,5 +17,9 @@ const Mainpage = (props) => (
         </div>
     </div>
 );
+
+Mainpage.propTypes = {
+    authenticate: PropTypes.func.isRequired
+};
 
 export default Mainpage;
