@@ -16,8 +16,8 @@ class App extends React.Component {
     };
 
     state = {
-        // chabge uuk for null or {}
-        userid: "uuk",
+        // change uuk for null or {}
+        userid: "",
         guests: {
             id: 1,
             name: "Rafał"
@@ -38,9 +38,10 @@ class App extends React.Component {
     };
 
     authHandler = async authData => {
-        // currentUser cos nie smiga
-        const currentUser = await database.fetch(this.state.userid, {context: this});
+        // setState i poł. z firebase śmiga
         this.setState({userid: authData.user.uid});
+        // const currentUser = await database.fetch(this.state.userid, {context: this});
+
         this.ref = await database.syncState(`/database${authData.user.uid}/guests`, {
             context: this,
             state: 'guests'
