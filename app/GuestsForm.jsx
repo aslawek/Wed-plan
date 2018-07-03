@@ -1,27 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { randomizeGuest } from './helpers/randomizeGuest';
+
 class GuestsForm extends React.Component {
     static propTypes = {
-        addGuest: PropTypes.func
+        addGuest: PropTypes.func,
+        generateGuest: PropTypes.func
     };
     nameRef = React.createRef();
     surnameRef = React.createRef();
-    ageRef = React.createRef();
     ageCategoryRef = React.createRef();
-    companionRef = React.createRef;
+    companionRef = React.createRef();
     sideRef = React.createRef();
     familyRef = React.createRef();
-    confirmedRef = React.createRef();
-    accomodationRef = React.createRef();
+    statusRef = React.createRef();
+    hotelRef = React.createRef();
+    noteRef = React.createRef();
 
     addGuest = (event) => {
         event.preventDefault();
-        const guest = {
+        const newGuest = {
             name: this.nameRef.current.value,
-            surname: this.surnameRef.current.value
+            surname: this.surnameRef.current.value,
+            ageCategory: this.ageCategoryRef.current.value,
+            companion: this.companionRef.current.value,
+            side: this.sideRef.current.value,
+            family: this.familyRef.current.value,
+            status: this.statusRef.current.value,
+            hotel: this.hotelRef.current.value,
+            note: this.noteRef.current.value
         };
-        this.props.addGuest(guest);
+        this.props.addGuest(newGuest);
         event.currentTarget.reset();
     };
 
@@ -43,27 +53,21 @@ class GuestsForm extends React.Component {
                     placeholder="Surname"
                     type="text"
                 />
-                <input
-                    name="age"
-                    ref={this.ageRef}
-                    className="guest-form-input__small"
-                    type="number"
-                    placeholder="Provide age or select"
-                />
                 <select name="age category" ref={this.ageCategoryRef} className="guest-form-select" type="text" defaultValue="">
-                    <option value="">Age category</option>
-                    <option value="baby">0-5</option>
-                    <option value="child">5-10</option>
-                    <option value="teenager1">10-15</option>
-                    <option value="teenager2">10-18</option>
-                    <option value="young">18-30</option>
-                    <option value="mature">30-50</option>
-                    <option value="old">50-</option>
+                    <option value="" disabled>Age category</option>
+                    <option value="0-5">0-5</option>
+                    <option value="5-10">5-10</option>
+                    <option value="10-15">10-15</option>
+                    <option value="10-18">10-18</option>
+                    <option value="18-30">18-30</option>
+                    <option value="30-40">30-40</option>
+                    <option value="30-40">40-50</option>
+                    <option value="50+">50+</option>
                 </select>
                 <select name="companion" ref={this.companionRef} className="guest-form-select" type="text" defaultValue="">
                     <option value="" disabled>Companion</option>
-                    <option value={false}>yes</option>
-                    <option value={true}>no</option>
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
                 </select>
                 <select name="side" ref={this.sideRef} className="guest-form-select" type="text" defaultValue="">
                     <option value="" disabled>Side (broom/bride)</option>
@@ -71,7 +75,32 @@ class GuestsForm extends React.Component {
                     <option value="groom">groom</option>
                     <option value="bride">bride</option>
                 </select>
+                <select name="family" ref={this.familyRef} className="guest-form-select" type="text" defaultValue="">
+                    <option value="" disabled>Family (broom/bride)</option>
+                    <option value="none">none</option>
+                    <option value="groom">groom</option>
+                    <option value="bride">bride</option>
+                </select>
+                <select name="status" ref={this.statusRef} className="guest-form-select" type="text" defaultValue="">
+                    <option value="" disabled>Status</option>
+                    <option value="none">None</option>
+                    <option value="invited">Invited</option>
+                    <option value="confirmed">Confirmed</option>
+                </select>
+                <select name="hotel" ref={this.hotelRef} className="guest-form-select" type="text" defaultValue="">
+                    <option value="" disabled>Accomodation?</option>
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+                <textarea
+                    name="note"
+                    ref={this.noteRef}
+                    className="guest-form-input"
+                    placeholder="Note"
+                    type="text"
+                />
                 <button className="guest-form-btn" type="submit">Add guest</button>
+                <button className="guest-form-btn" onClick={() => this.props.generateGuest(randomizeGuest())}>Generate guest</button>
             </form>
         )
     }

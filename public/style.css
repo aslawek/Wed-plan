@@ -93,10 +93,22 @@ body{
     border-radius: 0.5rem;
 }
 
-.guest-name{
+.guest-field-wide{
     font-size: 1rem;
     padding: 0.5rem;
-    width: 10rem;
+    width: 15%;
+}
+
+.guest-field-narrow{
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 8%;
+}
+
+.guest-field-btn{
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 3.5%;
 }
 
 /* GUEST-FORM */
@@ -132,6 +144,7 @@ body{
     padding: 0.5rem;
     margin: 0.5rem;
     width: calc(50% - 1rem);
+    border-radius: 0.5rem;
 }
 
 .guest-form-btn{

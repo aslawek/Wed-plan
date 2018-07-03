@@ -12,24 +12,15 @@ import Guests from './Guests';
 
 class App extends React.Component {
     static propTypes = {
+        userid: PropTypes.string,
         guests: PropTypes.object
     };
 
     state = {
         // change uuk for null or {}
         userid: "",
-        guests: {
-            id: 1,
-            name: "Rafał"
-        }
+        guests: {}
     };
-
-    componentDidMount(){
-        // this.ref = database.syncState('/database/guests', {
-        //     context: this,
-        //     state: 'guests'
-        // });
-    }
 
     addGuest = guest => {
         const guests = {...this.state.guests};
@@ -37,23 +28,44 @@ class App extends React.Component {
         this.setState({guests});
     };
 
-    authHandler = async authData => {
-        // setState i poł. z firebase śmiga
-        this.setState({userid: authData.user.uid});
-        // const currentUser = await database.fetch(this.state.userid, {context: this});
+    generateGuest = guest => {
+        const guests = {...this.state.guests};
+        guests[`guest${Date.now()}`] = guest;
+        this.setState({guests});
+    };
 
-        this.ref = await database.syncState(`/database${authData.user.uid}/guests`, {
+    removeGuest = guestID => {
+        console.log('remove!');
+        const guests = {...this.state.guests};
+        guests[guestID] = null;
+        this.setState({guests});
+    };
+
+    // UNQUOTE LATER
+    // authHandler = async authData => {
+    authHandler = () => {
+        const authData = {
+            user: {
+                uid: "HJP9zCDULeN7mk4VPoku2izVVpq2"
+            }
+        };
+        this.setState({userid: authData.user.uid});
+
+        // this.ref = await database.syncState(`/database${authData.user.uid}/guests`, {
+        this.ref = database.syncState(`/database${authData.user.uid}/guests`, {
             context: this,
             state: 'guests'
         });
     };
 
     authenticate = provider => {
-        const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-        firebaseApp
-            .auth()
-            .signInWithPopup(authProvider)
-            .then(this.authHandler)
+        // UNQUOTE LATER:
+        // const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+        // firebaseApp
+        //     .auth()
+        //     .signInWithPopup(authProvider)
+        //     .then(this.authHandler)
+        this.authHandler();
     };
 
     render(){
@@ -63,8 +75,12 @@ class App extends React.Component {
                     <Route exact path="/" component={() => <Mainpage props={data} authenticate={this.authenticate}/>}/>
                     <Route exact path="/guests" component={() =>
                         <Guests
-                        guests={this.state.guests}
-                        addGuest={this.addGuest}
+                            userid={this.state.userid}
+                            guests={this.state.guests}
+                            authenticate={this.authenticate}
+                            addGuest={this.addGuest}
+                            generateGuest={this.generateGuest}
+                            removeGuest={this.removeGuest}
                         />
                     }/>
                 </Switch>
