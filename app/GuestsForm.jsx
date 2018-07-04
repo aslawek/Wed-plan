@@ -20,7 +20,20 @@ class GuestsForm extends React.Component {
 
     addGuest = (event) => {
         event.preventDefault();
-        const currentDate = new Date();
+
+        const date = new Date();
+        let dd = date.getDate();
+        let mm = date.getMonth()+1;
+        let yyyy = date.getFullYear();
+
+        if(dd < 10) {
+            dd = '0' + dd
+        }
+        if(mm < 10) {
+            mm = '0' + mm
+        }
+        const currentDate = dd + '/' + mm + '/' + yyyy;
+
         const newGuest = {
             name: this.nameRef.current.value,
             surname: this.surnameRef.current.value,
@@ -72,16 +85,15 @@ class GuestsForm extends React.Component {
                     <option value="no">no</option>
                 </select>
                 <select name="side" ref={this.sideRef} className="guest-form-select" type="text" defaultValue="">
-                    <option value="" disabled>Side (broom/bride)</option>
+                    <option value="" disabled>Side (groom/bride)</option>
                     <option value="none">both</option>
                     <option value="groom">groom</option>
                     <option value="bride">bride</option>
                 </select>
                 <select name="family" ref={this.familyRef} className="guest-form-select" type="text" defaultValue="">
-                    <option value="" disabled>Family (broom/bride)</option>
-                    <option value="none">none</option>
-                    <option value="groom">groom</option>
-                    <option value="bride">bride</option>
+                    <option value="" disabled>Family (yes/no)</option>
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
                 </select>
                 <select name="status" ref={this.statusRef} className="guest-form-select" type="text" defaultValue="">
                     <option value="" disabled>Status</option>

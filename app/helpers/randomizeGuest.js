@@ -69,7 +69,7 @@ export function randomizeGuest () {
         mm = '0' + mm
     }
 
-    const currentDate = mm + '/' + dd + '/' + yyyy;
+    const currentDate = dd + '/' + mm + '/' + yyyy;
 
     function randomInt(min, max) {
         return Math.floor(Math.random()*(max - min) + min);
@@ -81,7 +81,7 @@ export function randomizeGuest () {
         ageCategory: ageCategories[randomInt(0, ageCategories.length)],
         companion: yesOrNo[randomInt(0, yesOrNo.length)],
         side: groomOrBride[randomInt(0, groomOrBride.length)],
-        family: groomOrBride[randomInt(0, groomOrBride.length)],
+        family: yesOrNo[randomInt(0, yesOrNo.length)],
         status: status[randomInt(0, status.length)],
         hotel: yesOrNo[randomInt(0, yesOrNo.length)],
         note: "randomized ;)",

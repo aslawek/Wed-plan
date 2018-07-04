@@ -18,6 +18,7 @@ class Guests extends React.Component {
     };
 
     render(){
+        const logout = <button onClick={this.props.logout}>Logout!</button>
         if(!this.props.guests ){
             return (
                 <div className="app-body">
@@ -26,7 +27,7 @@ class Guests extends React.Component {
                 </div>
             )
         }
-        if (this.props.userid === ""){
+        if (!this.props.userid){
             return (
                 <div className="app-body">
                     <Header searchBox backBtn/>
@@ -35,9 +36,16 @@ class Guests extends React.Component {
                 </div>
             )
         }
+        if (this.props.userid !== this.props.owner){
+            return <div>
+                <h1>Sorry, you are not the owner of the data</h1>
+                {logout}
+            </div>
+        }
         return (
             <div className="app-body">
                 <Header searchBox backBtn/>
+                {logout}
                 <div className="guests-content">
                     <ul className="guests-box">
                         <li className="guest-item">
