@@ -57,6 +57,20 @@ export function randomizeGuest () {
     const yesOrNo = ["yes", "no"];
     const status = ["none", "invited", "confirmed"];
 
+    const date = new Date();
+    let dd = date.getDate();
+    let mm = date.getMonth()+1;
+    let yyyy = date.getFullYear();
+
+    if(dd < 10) {
+        dd = '0' + dd
+    }
+    if(mm < 10) {
+        mm = '0' + mm
+    }
+
+    const currentDate = mm + '/' + dd + '/' + yyyy;
+
     function randomInt(min, max) {
         return Math.floor(Math.random()*(max - min) + min);
     }
@@ -70,7 +84,8 @@ export function randomizeGuest () {
         family: groomOrBride[randomInt(0, groomOrBride.length)],
         status: status[randomInt(0, status.length)],
         hotel: yesOrNo[randomInt(0, yesOrNo.length)],
-        note: "randomized ;)"
+        note: "randomized ;)",
+        date: currentDate
     };
 
     return guest;

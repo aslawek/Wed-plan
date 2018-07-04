@@ -28,6 +28,12 @@ class App extends React.Component {
         this.setState({guests});
     };
 
+    editGuest = (guest, editedGuest) => {
+        const guests = {...this.state.guests};
+        guests[guest] = editedGuest;
+        this.setState({guests})
+    };
+
     generateGuest = guest => {
         const guests = {...this.state.guests};
         guests[`guest${Date.now()}`] = guest;
@@ -79,6 +85,7 @@ class App extends React.Component {
                             guests={this.state.guests}
                             authenticate={this.authenticate}
                             addGuest={this.addGuest}
+                            editGuest={this.editGuest}
                             generateGuest={this.generateGuest}
                             removeGuest={this.removeGuest}
                         />

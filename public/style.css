@@ -87,28 +87,41 @@ body{
     display: flex;
     flex-direction: row;
 }
-.guest-item:first-child{
+.guest-item:nth-child(1){
     background: lightgreen;
     font-weight: bolder;
     border-radius: 0.5rem;
 }
 
-.guest-field-wide{
+.guest-field-id{
     font-size: 1rem;
     padding: 0.5rem;
-    width: 15%;
+    width: 3%;
+    text-align: center;
+}
+
+.guest-field-names{
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 12%;
 }
 
 .guest-field-narrow{
     font-size: 1rem;
     padding: 0.5rem;
-    width: 8%;
+    width: 7%;
+}
+
+.guest-field-wide{
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 19%;
 }
 
 .guest-field-btn{
     font-size: 1rem;
     padding: 0.5rem;
-    width: 3.5%;
+    /*width: 3.5%;*/
 }
 
 /* GUEST-FORM */

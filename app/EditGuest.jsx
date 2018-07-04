@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { randomizeGuest } from './helpers/randomizeGuest';
-
-class GuestsForm extends React.Component {
-    static propTypes = {
-        addGuest: PropTypes.func,
-        generateGuest: PropTypes.func
-    };
+class EditReact extends React.Component {
     nameRef = React.createRef();
     surnameRef = React.createRef();
     ageCategoryRef = React.createRef();
@@ -101,11 +95,10 @@ class GuestsForm extends React.Component {
                     placeholder="Note"
                     type="text"
                 />
-                <button className="guest-form-btn" type="submit">Add guest</button>
-                <button className="guest-form-btn" onClick={() => this.props.generateGuest(randomizeGuest())}>Generate guest</button>
+                <button className="guest-form-btn" type="submit">DONE!</button>
             </form>
         )
     }
 }
 
-export default GuestsForm;
+export default EditReact;
